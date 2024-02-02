@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  env: {
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
+      "pk_test_ZmxlZXQtYW5lbW9uZS02NS5jbGVyay5hY2NvdW50cy5kZXYk",
+    CLERK_SECRET_KEY: "sk_test_oKSFLOyRLXiVUtg3KH1wS86zVl42kzsDmkp5OahkR3",
+    WEBHOOK_SECRET: "",
+  },
+};
 
 export default nextConfig;
