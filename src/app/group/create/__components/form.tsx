@@ -15,10 +15,12 @@ import { Label } from "@/components/ui/label";
 import { useUser } from "@clerk/nextjs";
 import { LoaderIcon } from "lucide-react";
 import CreateGroup from "@/actions/creategroup";
+import UseAPIUser from "@/hooks/useUser";
 
 export default function GroupCreateForm() {
   const { isLoaded, user, isSignedIn } = useUser();
   const [rules, setRules] = useState<string>("");
+  const [error, setError] = useState<string>();
 
   return (
     <div>
@@ -30,7 +32,19 @@ export default function GroupCreateForm() {
               Create A Public or Private Group To Chat With Others!
             </CardDescription>
           </CardHeader>
-          <form action={CreateGroup}>
+          <form
+            action={(formData) => {
+              CreateGroup(formData).then((res) => {
+                if (res.error) {
+                  setError(
+                    "Unexpected Error while creating. Please try again later."
+                  );
+                } else {
+                  window.location.href = `/group/${res.groupid}`;
+                }
+              });
+            }}
+          >
             <Label>Group Name</Label>
             <Input
               type="text"
@@ -49,7 +63,7 @@ export default function GroupCreateForm() {
             <Input type="submit" value="submit" />
           </form>
           <CardFooter>
-            <p>Card Footer</p>
+            {error && <h1 className="text-red">{error}</h1>}
           </CardFooter>
         </Card>
       ) : (

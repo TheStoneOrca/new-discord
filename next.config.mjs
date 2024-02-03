@@ -6,6 +6,14 @@ const nextConfig = {
     CLERK_SECRET_KEY: "sk_test_oKSFLOyRLXiVUtg3KH1wS86zVl42kzsDmkp5OahkR3",
     WEBHOOK_SECRET: "whsec_zLwVfE/dD6wd2FA3z5p0Dc3kaByygnbZ",
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
