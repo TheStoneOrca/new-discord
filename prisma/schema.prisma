@@ -20,4 +20,14 @@ model Users {
   lname String
   bio String
   pronouns String
+  groupsowned Groups[]
+}
+
+model Groups {
+  groupid Int @id @default(autoincrement()) 
+  groupname String
+  grouprules String
+  groupprofile String 
+  creator Users @relation(fields: [groupcreator], references: [userid]) 
+  groupcreator String
 }

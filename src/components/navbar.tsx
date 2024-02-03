@@ -11,7 +11,6 @@ import {
   NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import useScrollTop from "@/hooks/useScrollTop";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import UserProfileButton from "./profilemanager";

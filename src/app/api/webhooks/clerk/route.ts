@@ -58,7 +58,6 @@ export async function POST(req: Request) {
       data: {
         userid: evt.data.id,
         username: evt.data.username,
-        password: "",
         userrole: "member",
         profile: evt.data.image_url,
         email: emails,
@@ -66,6 +65,12 @@ export async function POST(req: Request) {
         lname: evt.data.last_name,
         bio: "This is your new account! Checkout the rules <a href='/rules'>here!</a>",
         pronouns: "",
+      },
+    });
+  } else if (eventType === "user.deleted") {
+    await prisma.users.delete({
+      where: {
+        userid: evt.data.id,
       },
     });
   }
