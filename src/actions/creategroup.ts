@@ -42,6 +42,8 @@ export default async function CreateGroup(data: FormData) {
       [Group.rows[0].groupid, data.get("groupcreator") as string, "Owner"]
     );
 
+    await db.end();
+
     return { groupid: Group.rows[0].groupid };
   } catch (error) {
     console.error(error);

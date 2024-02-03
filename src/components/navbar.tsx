@@ -12,7 +12,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import UserProfileButton from "./profilemanager";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { Button } from "./ui/button";
@@ -60,7 +59,6 @@ export default function Navbar() {
       </div>
       {isLoaded && !isSignedIn && (
         <div className="absolute left-[1835px] mt-1 ml-0 mr-0">
-          {" "}
           <SignInButton>
             <Button variant="outline" className="dark:text-white text-black">
               Sign In
