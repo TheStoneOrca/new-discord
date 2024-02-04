@@ -14,12 +14,19 @@ export default async function CreateChannel(data: FormData) {
 
     await db.connect();
 
+    const channels = await db.query(
+      "SELECT * FROM channels WHERE channelcatergory = $1",
+      [data.get("catergoryid")]
+    );
+
     await db.query(
-      "INSERT INTO channels(channelname, channelcatergory, channelgroup) VALUES($1, $2, $3)",
+      "INSERT INTO channels(channelname, channelcatergory, channelgroup, channelnumber, channeltype) VALUES($1, $2, $3, $4, $5)",
       [
         data.get("channel-name"),
         data.get("catergoryid"),
         data.get("catergorygroup"),
+        channels.rows.length + 1,
+        data.get("channeltype"),
       ]
     );
 

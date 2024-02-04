@@ -8,7 +8,7 @@ export default function ChannelEditingPage() {
   const { id } = useParams();
 
   return (
-    <div className="bg-white h-[897px] w-full">
+    <div className="bg-white h-[897px] w-full dark:bg-black">
       <Catergories groupid={id as any} />
       <CreateCatergoryButton groupid={id as any} />
     </div>

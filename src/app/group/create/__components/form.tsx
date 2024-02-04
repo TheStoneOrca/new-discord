@@ -57,6 +57,9 @@ export default function GroupCreateForm() {
             <RulesForm setRules={setRules} />
             <Input type="hidden" name="grouprules" value={rules} required />
 
+            <Label>Group Description</Label>
+            <Input type="text" name="groupdesc" required />
+
             <Input type="file" name="group-profile" />
             <Input type="hidden" name="groupcreator" value={user.id} />
 

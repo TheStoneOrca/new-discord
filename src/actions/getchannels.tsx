@@ -14,7 +14,7 @@ export default async function GetChannels(props: { channelcatergory: number }) {
     await db.connect();
 
     const channels = await db.query(
-      "SELECT * FROM channels WHERE channelcatergory = $1",
+      "SELECT * FROM channels WHERE channelcatergory = $1 ORDER BY channelnumber",
       [props.channelcatergory]
     );
 

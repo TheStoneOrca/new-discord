@@ -31,12 +31,13 @@ export default async function CreateGroup(data: FormData) {
     const icon = await unJsonedData.json();
 
     const Group = await db.query(
-      "INSERT INTO groups(groupname, grouprules, groupprofile, groupcreator) VALUES($1, $2, $3, $4) RETURNING *",
+      "INSERT INTO groups(groupname, grouprules, groupprofile, groupcreator, groupdesc) VALUES($1, $2, $3, $4, $5) RETURNING *",
       [
         data.get("groupname") as string,
         data.get("grouprules") as string,
         icon.secure_url,
         data.get("groupcreator") as string,
+        data.get("groupdesc") as string,
       ]
     );
 

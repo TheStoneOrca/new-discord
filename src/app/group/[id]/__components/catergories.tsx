@@ -4,7 +4,6 @@ import GetCatergories from "@/actions/getcatergories";
 import { Loader2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import Channels from "./channels";
-import CreateChannelButton from "./createchannelform";
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 
 export default function Catergories(props: { groupid: number }) {
@@ -13,7 +12,6 @@ export default function Catergories(props: { groupid: number }) {
   useEffect(() => {
     GetCatergories({ groupid: props.groupid as any }).then((res: any) => {
       if (res.catergories) {
-        console.log(res.catergories);
         setCatergories(res.catergories);
       } else {
         setCatergories(false);
@@ -38,13 +36,7 @@ export default function Catergories(props: { groupid: number }) {
                 className="text-black dark:text-white"
                 key={catergory.catergoryid}
               >
-                <h1 className="flex underline">
-                  {catergory.catergoryname}
-                  <CreateChannelButton
-                    catergoryid={catergory.catergoryid}
-                    groupid={catergory.catergorygroup}
-                  />
-                </h1>
+                <h1 className="flex underline">{catergory.catergoryname}</h1>
                 <Channels
                   channelcatergory={catergory.catergoryid}
                   channelgroup={catergory.catergorygroup}

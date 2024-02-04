@@ -10,6 +10,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { id } = useParams();
 
   useEffect(() => {
+    function HandleWebpageLeave(event: BeforeUnloadEvent) {
+      event.preventDefault();
+      return (event.returnValue = "");
+    }
+
+    window.addEventListener("beforeunload", HandleWebpageLeave);
+
+    return () => {
+      window.removeEventListener("beforeunload", HandleWebpageLeave);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!isReady) return;
     if (!isLoggedIn) window.location.href = `/group/${id}`;
     CheckUser(userData.user.userid, id as any).then((res) => {

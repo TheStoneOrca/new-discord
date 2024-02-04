@@ -14,9 +14,18 @@ export default async function CreateCatergory(data: FormData) {
 
     await db.connect();
 
+    const catergories = await db.query(
+      "SELECT * FROM catergories WHERE catergorygroup = $1",
+      [data.get("groupid")]
+    );
+
     await db.query(
-      "INSERT INTO catergories(catergoryname, catergorygroup) VALUES($1, $2)",
-      [data.get("catergoryname"), data.get("groupid")]
+      "INSERT INTO catergories(catergoryname, catergorygroup, catergorynumber) VALUES($1, $2, $3)",
+      [
+        data.get("catergoryname"),
+        data.get("groupid"),
+        catergories.rows.length + 1,
+      ]
     );
 
     db.end();

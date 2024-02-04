@@ -46,7 +46,7 @@ export default function Navbar() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="absolute left-[1870px]">
+      <div className="absolute left-[1479px]">
         {isLoaded ? (
           isSignedIn ? (
             <div className="mt-1">

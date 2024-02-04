@@ -14,7 +14,7 @@ export default async function GetCatergories(props: { groupid: number }) {
     await db.connect();
 
     const catergories = await db.query(
-      "SELECT * FROM catergories WHERE catergorygroup = $1",
+      "SELECT * FROM catergories WHERE catergorygroup = $1 ORDER BY catergorynumber",
       [props.groupid]
     );
 

@@ -2,6 +2,7 @@
 
 import GetChannels from "@/actions/getchannels";
 import { AudioLinesIcon, ClipboardEditIcon, Loader2Icon } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Channels(props: {
@@ -37,16 +38,23 @@ export default function Channels(props: {
                 className="text-black dark:text-white text-sm mt-0"
               >
                 {channel.channeltype === "text" && (
-                  <h1 className="flex">
+                  <Link
+                    className="flex"
+                    href={`/group/${props.channelgroup}/channel/${channel.channelid}`}
+                  >
                     <ClipboardEditIcon />
                     {channel.channelname}
-                  </h1>
+                  </Link>
                 )}
                 {channel.channeltype === "voice" && (
-                  <h1 className="flex">
+                  <Link
+                    className="flex"
+                    href={`/group/${props.channelgroup}/channel/${channel.channelid}/voice`}
+                  >
+                    {" "}
                     <AudioLinesIcon />
                     {channel.channelname}
-                  </h1>
+                  </Link>
                 )}
               </div>
             ))}

@@ -20,7 +20,7 @@ export default function Settings(props: { groupid: number }) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost">
-          <SettingsIcon className="text-black" />
+          <SettingsIcon className="text-black dark:text-white" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-64 bg-black">
@@ -28,7 +28,7 @@ export default function Settings(props: { groupid: number }) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link href={`/group/${props.groupid}/edit/settings`}>Settings</Link>
+            <Link href={`/group/${props.groupid}/edit/members`}>Members</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href={`/group/${props.groupid}/edit/channels`}>Channels</Link>

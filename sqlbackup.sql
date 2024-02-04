@@ -37,3 +37,15 @@ CREATE TABLE channels(
 	channelcatergory INT REFERENCES catergories(catergoryid),
 	channelgroup INT REFERENCES groups(groupid)
 );
+
+CREATE TABLE messages(
+	messageid SERIAL PRIMARY KEY,
+	messagetext TEXT,
+	messagesender TEXT REFERENCES users(userid),
+	messagesentin INT REFERENCES channels(channelid),
+	messagegroup INT REFERENCES groups(groupid)
+);
+
+ALTER TABLE catergories ADD COLUMN catergorynumber INT;
+ALTER TABLE channels ADD COLUMN channelnumber INT;
+ALTER TABLE channels ADD COLUMN channeltype TEXT CHECK (channeltype IN ('voice', 'text'))

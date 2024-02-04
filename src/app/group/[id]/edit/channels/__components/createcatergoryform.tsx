@@ -31,7 +31,7 @@ export default function CreateCatergoryButton(props: { groupid: number }) {
       {input && (
         <div>
           <Label>Catergory Name</Label>
-          <div className="flex">
+          <div className="flex text-black dark:text-white">
             <Input name="catergoryname" type="text" className="w-30" required />
             <Input type="submit" value="create" className="w-30" />
           </div>
@@ -41,7 +41,7 @@ export default function CreateCatergoryButton(props: { groupid: number }) {
       <Input type="hidden" name="groupid" value={props.groupid} />
 
       <Button variant="ghost" type="button" onClick={() => showInput(!input)}>
-        <Plus className="text-black" />
+        <Plus className="text-black dark:text-white" />
       </Button>
 
       {error && <h1>{error}</h1>}

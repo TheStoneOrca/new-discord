@@ -13,20 +13,20 @@ export default function Logo() {
       <Image
         src="/CocoCord-logos_black.png"
         alt="logo"
-        className="dark:block hidden"
+        className="dark:hidden"
         width={50}
         height={50}
       />
       <Image
         src="/CocoCord-logos_white.png"
         alt="logo"
-        className="dark:hidden block"
+        className="dark:block hidden"
         width={50}
         height={50}
       />
       <p
         className={cn(
-          "text-center text-2xl dark:text-black text-white",
+          "text-center text-2xl dark:text-white text-black",
           font.className
         )}
       >
