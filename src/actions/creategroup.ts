@@ -5,8 +5,11 @@ import pg from "pg";
 export default async function CreateGroup(data: FormData) {
   try {
     const db = new pg.Client({
-      connectionString:
-        "postgresql://josephiannuzzelli4561:f5LIBtRr7OQF@ep-billowing-morning-02647692.us-east-2.aws.neon.tech/better-discord?sslmode=require",
+      host: "localhost",
+      user: "postgres",
+      password: "Domg0730",
+      port: 5432,
+      database: "better-discord",
     });
 
     await db.connect();

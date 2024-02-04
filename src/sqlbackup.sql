@@ -24,3 +24,16 @@ CREATE TABLE joins(
   joiningperson TEXT REFERENCES users(userid),
   role TEXT
 );
+
+CREATE TABLE catergories(
+  catergoryid SERIAL PRIMARY KEY,
+  catergoryname TEXT,
+  catergorygroup INT REFERENCES groups(groupid)
+);
+
+CREATE TABLE channels(
+	channelid SERIAL PRIMARY KEY,
+	channelname TEXT,
+	channelcatergory INT REFERENCES catergories(catergoryid),
+	channelgroup INT REFERENCES groups(groupid)
+);
