@@ -15,7 +15,7 @@ export default function Header() {
         The Latest and Greatest <br /> Social Media Platform
       </h1>
       <br />
-      <div className="w-full h-[575px] bg-white dark:bg-black text-white">
+      <div className="w-full h-[701px] md:h-575 bg-white dark:bg-black text-white">
         <span className="text-3xl font-bold">
           <h1 className="dark:text-white text-black">CocoCord</h1>
 

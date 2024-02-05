@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MessageFormTextArea from "./messagetextarea";
 import { Input } from "@/components/ui/input";
 import CreateMessage from "@/actions/createmessage";
@@ -20,6 +20,7 @@ export default function MessageForm(props: {
           CreateMessage(data).then((res) => {
             if (res.error) {
               setError(error);
+            } else {
             }
           });
         }}

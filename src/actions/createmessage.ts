@@ -1,6 +1,7 @@
 "use server";
 
 import pg from "pg";
+import io from "socket.io-client";
 
 export default async function CreateMessage(data: FormData) {
   try {
@@ -23,6 +24,16 @@ export default async function CreateMessage(data: FormData) {
         data.get("messagegroup"),
       ]
     );
+
+    const socket = io("http://localhost:3000");
+
+    socket.emit("sendmessage", {
+      messagecontent: data.get("messagetext"),
+      messagesender: data.get("messagesender"),
+      messagegroup: data.get("messagegroup"),
+    });
+
+    socket.disconnect();
 
     return { success: true, messageData: message.rows[0] };
   } catch (error) {

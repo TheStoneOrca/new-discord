@@ -7,6 +7,7 @@ import MessageForm from "./__components/createmessage";
 import { useUser } from "@clerk/nextjs";
 import { Loader2Icon } from "lucide-react";
 import Catergories from "../../__components/catergories";
+import Messages from "./__components/messages";
 
 export default function ChannelPage() {
   const { channelid, id } = useParams();
@@ -15,6 +16,10 @@ export default function ChannelPage() {
   return (
     <div className="flex">
       <Catergories groupid={id as any} />
+      <div className="flex items-center">
+        {" "}
+        <Messages channelid={channelid as any} />
+      </div>
       <div className="absolute bottom-10">
         {isLoaded ? (
           <MessageForm
