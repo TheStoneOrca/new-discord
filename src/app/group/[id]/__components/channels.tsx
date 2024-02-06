@@ -4,7 +4,6 @@ import GetChannels from "@/actions/getchannels";
 import { AudioLinesIcon, ClipboardEditIcon, Loader2Icon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { io } from "socket.io-client";
 
 export default function Channels(props: {
   channelcatergory: number;
