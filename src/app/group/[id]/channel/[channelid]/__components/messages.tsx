@@ -5,6 +5,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useUser } from "@clerk/nextjs";
 import { Loader2Icon, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
+import Pusher from "pusher-js";
 import EditMessageMenu from "./editmessagemenu";
 
 export default function Messages(props: { channelid: number }) {
@@ -17,6 +18,83 @@ export default function Messages(props: { channelid: number }) {
         setMessage([]);
       } else {
         setMessage(res.channelData?.channelMessages);
+        let pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY as any, {
+          cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER as any,
+        });
+
+        let channel = pusher.subscribe("messages");
+        channel.bind("newmessage", (data: any) => {
+          const message = JSON.parse(data.message);
+
+          const msg: {
+            channelid: number;
+            user: string;
+            messagetext: string;
+            messageid: number;
+          } = message.message;
+
+          if (Number(msg.channelid) == Number(props.channelid)) {
+            res.channelData?.channelMessages.push({
+              messageid: msg.messageid,
+              messagesender: msg.user,
+              messagetext: msg.messagetext,
+            });
+
+            setMessage(res.channelData?.channelMessages);
+          }
+        });
+
+        channel.bind("editmessage", (data: any) => {
+          const message = JSON.parse(data.message);
+
+          const msg: {
+            channelid: number;
+            user: string;
+            messagetext: string;
+            messageid: number;
+            username: string;
+          } = message.message;
+
+          if (Number(msg.channelid) == Number(props.channelid)) {
+            const indexOfMessage = res.channelData?.channelMessages.findIndex(
+              (message) => message.messageid === msg.messageid
+            );
+
+            if ((indexOfMessage as any) > -1) {
+              res.channelData?.channelMessages.splice(indexOfMessage as any, 1);
+            }
+
+            res.channelData?.channelMessages.push({
+              messageid: msg.messageid,
+              messagesender: msg.user,
+              messagetext: msg.messagetext,
+              username: msg.username,
+            });
+
+            setMessage(res.channelData?.channelMessages);
+          }
+        });
+
+        channel.bind("deletemessage", (data: any) => {
+          const message = JSON.parse(data.message);
+
+          const msg: {
+            channelid: number;
+            messageid: number;
+          } = message.message;
+
+          if (Number(msg.channelid) == Number(props.channelid)) {
+            const indexOfMessage = res.channelData?.channelMessages.findIndex(
+              (message) => message.messageid === msg.messageid
+            );
+
+            if ((indexOfMessage as any) > -1) {
+              res.channelData?.channelMessages.splice(indexOfMessage as any, 1);
+            }
+
+            setMessage(res.channelData?.channelMessages);
+          }
+        });
       }
     });
   }, []);

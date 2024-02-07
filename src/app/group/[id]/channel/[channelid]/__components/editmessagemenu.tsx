@@ -53,7 +53,7 @@ export default function EditMessageMenu(props: {
                   if (res.errror) {
                     setError("Unexpected Error!");
                   } else {
-                    window.location.reload();
+                    showInput(false);
                   }
                 });
               }}
@@ -97,8 +97,6 @@ export default function EditMessageMenu(props: {
                   DeleteMessage({ messageid: props.messageid }).then((res) => {
                     if (res.error) {
                       setError("Unexpected Error");
-                    } else {
-                      window.location.reload();
                     }
                   })
                 }

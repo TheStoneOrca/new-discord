@@ -2,11 +2,9 @@
 
 import GetChannel from "@/actions/getchannel";
 import { useParams } from "next/navigation";
-import { useEffect } from "react";
 import MessageForm from "./__components/createmessage";
 import { useUser } from "@clerk/nextjs";
 import { Loader2Icon } from "lucide-react";
-import Catergories from "../../__components/catergories";
 import Messages from "./__components/messages";
 
 export default function ChannelPage() {
