@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -23,6 +24,8 @@ export default function GroupCard(props: {
 }) {
   const [isJoined, setIsJoined] = useState<boolean>();
   const { isLoaded, user } = useUser();
+  const [error, setError] = useState<string>();
+
   useEffect(() => {
     if (!isLoaded) return;
     if (!user) return;
@@ -65,13 +68,24 @@ export default function GroupCard(props: {
                   variant="outline"
                   className="w-full"
                   onClick={() => {
-                    JoinGroup({ groupid: props.id, userid: user.id });
+                    JoinGroup({ groupid: props.id, userid: user.id }).then(
+                      (res) => {
+                        if (res.success) {
+                          window.location.href = `/group/${props.id}`;
+                        } else {
+                          setError(
+                            "Unexpected Error while joining. Please wait as we get this fixed."
+                          );
+                        }
+                      }
+                    );
                   }}
                 >
                   Join
                 </Button>
               )}
             </div>
+            <CardFooter>{error && <h1>{error}</h1>}</CardFooter>
           </Card>
         </div>
       ) : (

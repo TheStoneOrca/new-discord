@@ -1,13 +1,20 @@
 "use client";
 
 import GetCatergories from "@/actions/getcatergories";
-import { Loader2Icon } from "lucide-react";
+import {
+  ArrowBigDown,
+  ArrowBigLeft,
+  ArrowBigUp,
+  Loader2Icon,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import Channels from "./channels";
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 export default function Catergories(props: { groupid: number }) {
   const [catergories, setCatergories] = useState<any>();
+  const [channels, showChannels] = useState<boolean>(true);
 
   useEffect(() => {
     GetCatergories({ groupid: props.groupid as any }).then((res: any) => {
@@ -36,11 +43,22 @@ export default function Catergories(props: { groupid: number }) {
                 className="text-black dark:text-white"
                 key={catergory.catergoryid}
               >
-                <h1 className="flex underline">{catergory.catergoryname}</h1>
-                <Channels
-                  channelcatergory={catergory.catergoryid}
-                  channelgroup={catergory.catergorygroup}
-                />
+                <Button
+                  variant="ghost"
+                  className="text-lg w-full justify-start"
+                  onClick={() => showChannels(!channels)}
+                >
+                  {catergory.catergoryname}
+                  {channels ? <ArrowBigDown /> : <ArrowBigLeft />}
+                </Button>
+                {channels && (
+                  <div>
+                    <Channels
+                      channelcatergory={catergory.catergoryid}
+                      channelgroup={catergory.catergorygroup}
+                    />
+                  </div>
+                )}
                 <br />
               </div>
             ))}

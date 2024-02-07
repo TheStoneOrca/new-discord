@@ -14,13 +14,11 @@ export default function ChannelPage() {
   const { isLoaded, user } = useUser();
 
   return (
-    <div className="flex">
-      <Catergories groupid={id as any} />
+    <div className="flex justify-center">
       <div className="flex items-center">
-        {" "}
         <Messages channelid={channelid as any} />
       </div>
-      <div className="absolute bottom-10">
+      <div className="absolute bottom-4">
         {isLoaded ? (
           <MessageForm
             channelid={channelid as any}

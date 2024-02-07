@@ -1,6 +1,7 @@
 "use client";
 
 import GetChannels from "@/actions/getchannels";
+import { Button } from "@/components/ui/button";
 import { AudioLinesIcon, ClipboardEditIcon, Loader2Icon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -38,13 +39,19 @@ export default function Channels(props: {
                 className="text-black dark:text-white text-sm mt-0"
               >
                 {channel.channeltype === "text" && (
-                  <Link
-                    className="flex"
-                    href={`/group/${props.channelgroup}/channel/${channel.channelid}`}
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="w-full justify-start"
                   >
-                    <ClipboardEditIcon />
-                    {channel.channelname}
-                  </Link>
+                    <Link
+                      className="flex "
+                      href={`/group/${props.channelgroup}/channel/${channel.channelid}`}
+                    >
+                      <ClipboardEditIcon />
+                      {channel.channelname}
+                    </Link>
+                  </Button>
                 )}
                 {channel.channeltype === "voice" && (
                   <Link

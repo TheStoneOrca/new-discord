@@ -80,6 +80,7 @@ export default function EditMessageMenu(props: {
               <div>
                 <Button
                   variant="ghost"
+                  className="w-full justify-start"
                   onClick={() => {
                     showInput(!editInput);
                   }}
@@ -91,6 +92,7 @@ export default function EditMessageMenu(props: {
             <DropdownMenuItem asChild>
               <Button
                 variant="destructive"
+                className="w-full justify-start"
                 onClick={() =>
                   DeleteMessage({ messageid: props.messageid }).then((res) => {
                     if (res.error) {

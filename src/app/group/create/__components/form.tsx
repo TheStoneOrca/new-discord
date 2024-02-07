@@ -25,7 +25,7 @@ export default function GroupCreateForm() {
   return (
     <div className="flex justify-center">
       {isLoaded && isSignedIn && user ? (
-        <Card className="w-[350px]">
+        <Card className="w-[400px]">
           <CardHeader>
             <CardTitle>Create A Group</CardTitle>
             <CardDescription>

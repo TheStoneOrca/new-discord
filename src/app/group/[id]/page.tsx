@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Settings from "./__components/settings";
 import Catergories from "./__components/catergories";
+import Sidebar from "./__components/sidebar";
 
 export default function GroupsPage() {
   const [owner, isOwner] = useState<boolean>(false);
@@ -28,12 +29,7 @@ export default function GroupsPage() {
   return (
     <div className="bg-white h-[897px] w-full dark:bg-black">
       {!isReady && <Loader2Icon className="text-black animate-spin" />}
-      {owner && (
-        <div>
-          <Settings groupid={id as any} />
-          <Catergories groupid={id as any} />
-        </div>
-      )}
+      {owner && <>{owner && <Settings groupid={id as any} />}</>}
     </div>
   );
 }
