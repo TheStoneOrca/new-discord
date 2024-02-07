@@ -2,11 +2,12 @@
 
 import GetAllGroups from "@/actions/getallgroups";
 import GetSpecificGroup from "@/actions/getspecificgroup";
-import { notFound, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import GroupCard from "./__components/groupcard";
 import { Loader2Icon } from "lucide-react";
 import SearchBar from "./__components/searchbar";
+import NotFoundPage from "../not-found";
 
 export default function GroupsPage() {
   const [groups, setGroups] = useState<any>();
@@ -19,7 +20,7 @@ export default function GroupsPage() {
       GetSpecificGroup(searchQuery.replace(/^['"]|['"]$/g, "")).then(
         (res: any) => {
           if (res.error || res.groups === null) {
-            notFound();
+            return <NotFoundPage />;
           } else if (res.groups) {
             setGroups(res.groups);
           }

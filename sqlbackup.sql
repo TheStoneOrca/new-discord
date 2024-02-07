@@ -46,6 +46,12 @@ CREATE TABLE messages(
 	messagegroup INT REFERENCES groups(groupid)
 );
 
+CREATE TABLE invitelinks(
+	linkid SERIAL PRIMARY KEY,
+	joining INT REFERENCES groups(groupid)
+);
+
 ALTER TABLE catergories ADD COLUMN catergorynumber INT;
 ALTER TABLE channels ADD COLUMN channelnumber INT;
 ALTER TABLE channels ADD COLUMN channeltype TEXT CHECK (channeltype IN ('voice', 'text'))
+ALTER TABLE invitelink ADD COLUMN dateCreated TEXT

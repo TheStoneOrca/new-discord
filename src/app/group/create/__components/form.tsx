@@ -23,7 +23,7 @@ export default function GroupCreateForm() {
   const [error, setError] = useState<string>();
 
   return (
-    <div>
+    <div className="flex justify-center">
       {isLoaded && isSignedIn && user ? (
         <Card className="w-[350px]">
           <CardHeader>
