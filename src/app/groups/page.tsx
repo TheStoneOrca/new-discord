@@ -8,6 +8,8 @@ import GroupCard from "./__components/groupcard";
 import { Loader2Icon } from "lucide-react";
 import SearchBar from "./__components/searchbar";
 import NotFoundPage from "../not-found";
+import Navbar from "@/components/navbar";
+import { NavigationMenuContent } from "@/components/ui/navigation-menu";
 
 export default function GroupsPage() {
   const [groups, setGroups] = useState<any>();
@@ -39,7 +41,9 @@ export default function GroupsPage() {
 
   return (
     <div className="flex">
-      <SearchBar />
+      <div className="">
+        <SearchBar />
+      </div>
       {groups ? (
         <div className="flex">
           {groups.map((group: any) => (
